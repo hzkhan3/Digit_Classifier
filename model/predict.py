@@ -2,27 +2,25 @@ from train_model import train_model
 from tensorflow.keras.models import load_model
 import numpy as np
 import cv2
+from PIL import Image, ImageOps
 import os
 
 def predict_digit(image):
-    # Extract file extension from the input path
-    filename, file_extension = os.path.splitext(image)
-    image_extension = [".jpeg", "jpeg", ".png"]
+    # Check if the image is a pillow image
+    if not isinstance(image, Image.Image):
+        raise ValueError("Input must be a PIL Image")
     
-    # Check if the image file has the supported extensions
-    if file_extension in image_extension:
-        image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-    else:
-        print("File type not accepted")
+    # Convert to grayscale
+    image = ImageOps.grayscale(image)
 
-    # Resize the image to be 28 x 28 pixels for the CNN
-    image = cv2.resize(image, (28, 28))
+    # Resize to 28x28
+    image = image.resize((28, 28))
 
-    # Invert the colors so that it is white on black background
-    image = 255 - image
+    # Invert the image (white digit on black background)
+    image = ImageOps.invert(image)
 
-    # Normalize the image
-    image =  image.astype('float32') / 255
+    # Convert to NumPy array and normalize
+    image = np.array(image).astype('float32') / 255.0
 
     # Reshape the image in the correct format for the model
     image = image.reshape(1, (28*28))
