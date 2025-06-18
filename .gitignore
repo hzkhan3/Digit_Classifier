@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # VENV
-.venv
+digit-env
 
 # Distribution / packaging
 .Python
