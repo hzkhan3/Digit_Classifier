@@ -26,7 +26,8 @@ def predict_digit(image):
     image = image.reshape(1, (28*28))
 
     # Load the model
-    loaded_model = load_model("../model/cnn_model.keras")
+    model_path = os.path.join(os.path.dirname(__file__), "cnn_model.keras")
+    loaded_model = load_model(model_path)
 
     # Predict the digit
     prediction = loaded_model.predict(image)
