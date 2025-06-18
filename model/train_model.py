@@ -5,7 +5,7 @@ from tensorflow.keras import models, layers
 from tensorflow.keras.utils import to_categorical
 import numpy as np
 import matplotlib as plt
-from cnn_model import create_model
+from .cnn_model import create_model
 
 def train_model():
     # Load the data
