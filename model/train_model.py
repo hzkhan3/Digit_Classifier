@@ -27,7 +27,7 @@ def train_model():
     test_label = to_categorical(test_label)
 
     # Train the model
-    network.fit(train_image, train_label, epochs=5, batch_size = 32)
+    network.fit(train_image, train_label, epochs=5, batch_size = 24)
 
     # Test it on the test images
     test_loss, test_acc = network.evaluate(test_image, test_label)
