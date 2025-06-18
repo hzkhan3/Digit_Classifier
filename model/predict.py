@@ -1,4 +1,4 @@
-from train_model import train_model
+from .train_model import train_model
 from tensorflow.keras.models import load_model
 import numpy as np
 import cv2
