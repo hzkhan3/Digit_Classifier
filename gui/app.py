@@ -28,35 +28,31 @@ root = tk.Tk()
 root.title("Live Digit Classifier")
 root.geometry("600x600")
 
-# Grid layout config
-root.columnconfigure(0, weight=1)
-root.rowconfigure([0, 1, 2, 3, 4, 5], weight=1)
-
 # Title label
-title_label = Label(root, text="Welcome to the Live Digit Classifier!", font=("Helvetica", 16))
-title_label.grid(row=0, column=0, pady=10)
+title_label = Label(root, text="Welcome to the Live Digit Classifier!", font=("Helvetica", 48))
+title_label.pack()
 
 # Subtitle label
-subtitle_label = Label(root, text="Please draw a digit from 0–9 below", font=("Helvetica", 12))
-subtitle_label.grid(row=1, column=0)
+subtitle_label = Label(root, text="Please draw a digit from 0–9 below", font=("Helvetica", 24))
+subtitle_label.pack()
 
 # Drawing canvas
 canvas = Canvas(root, bg='white', width=280, height=280)
 image1 = Image.new("L", (280, 280), 'white')  # L = grayscale
 draw = ImageDraw.Draw(image1)
-canvas.grid(row=2, column=0)
+canvas.pack()
 canvas.bind("<Button-1>", savePosn)
 canvas.bind("<B1-Motion>", addLine)
 
 # Result label
-result_label = Label(root, text="", font=("Helvetica", 14))
-result_label.grid(row=3, column=0)
+result_label = Label(root, text="", font=("Helvetica", 18))
+result_label.pack()
 
 # Buttons for predict and clear
 predict_btn = Button(root, text="Predict", command=on_button_click)
-predict_btn.grid(row=4, column=0)
+predict_btn.pack()
 
 clear_btn = Button(root, text="Clear", command=clear_canvas)
-clear_btn.grid(row=5, column=0)
+clear_btn.pack()
 
 root.mainloop()
